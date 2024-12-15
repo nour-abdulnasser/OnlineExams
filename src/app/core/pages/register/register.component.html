@@ -1,0 +1,53 @@
+<div class="form-template grid justify-content-center">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-item col-12">
+        <input
+          type="text"
+          class="w-full"
+          pInputText
+          formControlName="firstName"
+          placeholder="First Name"
+        />
+      </div>
+      <div class="form-item col-12">
+        <input
+          type="text"
+          class="w-full"
+          pInputText
+          formControlName="lastName"
+          placeholder="Last Name"
+        />
+      </div>
+      <div class="form-item col-12">
+        <input
+          type="email"
+          class="w-full"
+          pInputText
+          formControlName="email"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-item col-12">
+        <p-password
+          formControlName="password"
+          placeholder="Password"
+          [toggleMask]="true"
+        />
+      </div>
+      <div class="form-item col-12">
+        <p-password
+          formControlName="rePassword"
+          placeholder="Confirm Password"
+          [toggleMask]="true"
+        />
+      </div>
+      <div class="form-item col-12 grid ">
+        <!-- TODO: Routerlink to sign in -->
+        <p class="ml-auto forgot-password-button">Already have an account?</p>
+      </div>
+      <div class="form-item col-12">
+        <p-button class="auth-button" label="Create Account" />
+      </div>
+    </form>
+  </div>
+  

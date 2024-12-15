@@ -1,0 +1,48 @@
+<section class="auth-layout">
+  <div class="grid h-screen">
+    <div
+      class="auth-welcome-container p-5 px-7 col-6 flex-column align-items-center justify-contemnt-between"
+    >
+      <div class="auth-welcome-container-inner">
+        <div class="text-container">
+          <h1 class="poppins-700 text-5xl welcome-title">
+            Welcome to <br />
+            <span class="text-6xl">Elevate</span>
+          </h1>
+
+          <p class="poppins-400 welcome-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
+            itaque.
+          </p>
+        </div>
+        <div class="image-container">
+          <img src="../../../../assets/images/bro.svg" class="" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="auth-form-container p-5 col-6 grid flex-column">
+      <nav class="auth-nav ml-auto poppins-400">
+        <p-dropdown
+          [(ngModel)]="selectedLanguage"
+          [options]="languages"
+          placeholder="Select a Language"
+        />
+        <p-button
+          label="Sign in"
+          routerLink="login"
+          routerLinkActive="active"
+          [text]="true"
+        />
+        <p-button
+          label="Register"
+          routerLink="register"
+          routerLinkActive="active"
+          [text]="true"
+        />
+      </nav>
+      <div class="auth-form grid flex-column flex-1 justify-content-center align-items-center">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

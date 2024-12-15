@@ -1,0 +1,32 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/fonts.scss";
+
+.auth-welcome-container {
+  background-color: $sky-blue-bg;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.05);
+ 
+  &-inner {
+    margin: auto;
+  }
+}
+.welcome-description {
+  font-size: 1.1rem;
+}
+.welcome-title {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  span {
+    color: $primary-color-dark;
+  }
+}
+
+.auth-nav {
+    ::ng-deep .p-button {
+        
+      &.active .p-button-label {
+        font-weight: 600;  
+      }
+    }
+  }

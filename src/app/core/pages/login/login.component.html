@@ -1,0 +1,27 @@
+<div class="form-template grid justify-content-center">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-item col-12">
+      <input
+        type="email"
+        class="w-full"
+        pInputText
+        formControlName="email"
+        placeholder="Enter Email"
+      />
+    </div>
+    <div class="form-item col-12">
+      <p-password
+        formControlName="password"
+        placeholder="Password"
+        [toggleMask]="true"
+      />
+    </div>
+    <div class="form-item col-12 grid ">
+      <!-- TODO: RouterLink to forgot password page -->
+      <p class="ml-auto forgot-password-button">Forgot password?</p>
+    </div>
+    <div class="form-item col-12">
+      <p-button class="auth-button" label="Sign in" />
+    </div>
+  </form>
+</div>

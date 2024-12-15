@@ -1,0 +1,10 @@
+@import "../../../styles/fonts.scss";
+@import "../../../styles/variables.scss";
+
+.auth-button {
+    width: 100%;
+    
+    ::ng-deep .p-button {
+      width: 100%;
+    }
+  }
