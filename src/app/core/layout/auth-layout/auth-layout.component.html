@@ -21,26 +21,10 @@
       </div>
     </div>
     <div class="auth-form-container p-5 col-6 grid flex-column">
-      <nav class="auth-nav ml-auto poppins-400">
-        <p-dropdown
-          [(ngModel)]="selectedLanguage"
-          [options]="languages"
-          placeholder="Select a Language"
-        />
-        <p-button
-          label="Sign in"
-          routerLink="login"
-          routerLinkActive="active"
-          [text]="true"
-        />
-        <p-button
-          label="Register"
-          routerLink="register"
-          routerLinkActive="active"
-          [text]="true"
-        />
-      </nav>
-      <div class="auth-form grid flex-column flex-1 justify-content-center align-items-center">
+      <app-auth-nav-bar />
+      <div
+        class="auth-form grid flex-column flex-1 justify-content-center align-items-center"
+      >
         <router-outlet></router-outlet>
       </div>
     </div>
