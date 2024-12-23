@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './core/pages/login/login.component';
-
+import { AuthGuardFn } from './core/guards/auth.guard';
+// TODO: import authguard from auth library instead
 export const routes: Routes = [
   {
-    path : "",
-    redirectTo : "auth",
-    pathMatch : "full"
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
   },
   {
     path: 'auth',
@@ -31,17 +32,32 @@ export const routes: Routes = [
           ),
       },
       {
-        path : "forgot-password",
-        loadComponent : () => import("./core/pages/forgot-password/forgot-password.component").then(m => m.ForgotPasswordComponent)
+        path: 'forgot-password',
+        loadComponent: () =>
+          import('./core/pages/forgot-password/forgot-password.component').then(
+            (m) => m.ForgotPasswordComponent
+          ),
       },
       {
-        path : "verify-code",
-        loadComponent : () => import("./core/pages/verify-code/verify-code.component").then(m => m.VerifyCodeComponent)
+        path: 'verify-code',
+        loadComponent: () =>
+          import('./core/pages/verify-code/verify-code.component').then(
+            (m) => m.VerifyCodeComponent
+          ),
       },
       {
-        path : "reset-password",
-        loadComponent : () => import("./core/pages/reset-password/reset-password.component").then(m => m.ResetPasswordComponent)
+        path: 'reset-password',
+        loadComponent: () =>
+          import('./core/pages/reset-password/reset-password.component').then(
+            (m) => m.ResetPasswordComponent
+          ),
       },
     ],
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./core/layout/home/home.component').then((m) => m.HomeComponent),
+    canActivate: [AuthGuardFn],
   },
 ];

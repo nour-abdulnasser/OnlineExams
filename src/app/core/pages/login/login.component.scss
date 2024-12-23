@@ -1,10 +1,33 @@
-@import "../../../styles/fonts.scss";
-@import "../../../styles/variables.scss";
+.form-template {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  
+  .form-item {
+    margin-bottom: 1.5rem;
+  }
 
-.auth-button {
-    width: 100%;
+  .forgot-password-button {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.875rem;
+    margin: 0;
     
-    ::ng-deep .p-button {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  :host ::ng-deep {
+    .auth-button {
+      .p-button {
+        width: 100%;
+      }
+    }
+
+    .p-password input {
       width: 100%;
     }
   }
+}

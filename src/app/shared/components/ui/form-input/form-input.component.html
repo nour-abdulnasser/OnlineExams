@@ -1,0 +1,26 @@
+<div class="form-item col-12">
+    @if (inputType !== 'password') {
+    <input
+      [type]="inputType"
+      [placeholder]="placeholder()"
+      pInputText
+      class="w-full"
+      [value]="value"
+      [disabled]="isDisabled"
+      (input)="setValue($event)"
+      (blur)="recordTouch()"
+      [ngClass]="{ 'ng-invalid ng-dirty': showError }"
+    /> 
+    } @else {
+    <p-password
+      [toggleMask]="true"
+      [placeholder]="placeholder()"
+      [feedback]="false"
+      (onBlur)="recordTouch()"
+      (input)="setValue($event)"
+      [ngClass]="{ 'ng-invalid ng-dirty': showError }"
+    />
+    } @if (showError) {
+    <app-error-message [message]="errorMessage" />
+    }
+  </div>

@@ -1,27 +1,38 @@
 <div class="form-template grid justify-content-center">
+  @if(errorMessage) {
+  <div class="col-12">
+    <p class="p-error">{{ errorMessage }}</p>
+  </div>
+  }
   <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <app-form-input
+      formControlName="email"
+      placeholder="Enter Email"
+      type="email"
+      [errors]="loginForm.get('email')?.errors"
+    />
+
+    <app-form-input
+      formControlName="password"
+      placeholder="Password"
+      type="password"
+      [errors]="loginForm.get('password')?.errors"
+    />
+
+    <div class="form-item col-12 grid">
+      <p class="ml-auto forgot-password-button" (click)="forgotPassword()">
+        Forgot password?
+      </p>
+    </div>
+
     <div class="form-item col-12">
-      <input
-        type="email"
-        class="w-full"
-        pInputText
-        formControlName="email"
-        placeholder="Enter Email"
+      <p-button
+        [disabled]="loginForm.invalid || isLoading"
+        [loading]="isLoading"
+        class="auth-button w-full"
+        label="Sign in"
+        type="submit"
       />
-    </div>
-    <div class="form-item col-12">
-      <p-password
-        formControlName="password"
-        placeholder="Password"
-        [toggleMask]="true"
-      />
-    </div>
-    <div class="form-item col-12 grid ">
-      <!-- TODO: RouterLink to forgot password page -->
-      <p class="ml-auto forgot-password-button">Forgot password?</p>
-    </div>
-    <div class="form-item col-12">
-      <p-button class="auth-button" label="Sign in" />
     </div>
   </form>
 </div>
