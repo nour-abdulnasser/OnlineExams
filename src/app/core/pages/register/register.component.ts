@@ -41,13 +41,30 @@ export class RegisterComponent {
 
   constructor(
     private _authApiService: AuthApiService,
-    private _FormBuilder: FormBuilder 
+    private _FormBuilder: FormBuilder
   ) {
     console.log(this.registerForm.get('password')?.errors);
   }
   register() {
-    this._authApiService
-      .login(this.registerForm.value)
-      .subscribe((res) => console.log(res, 'res'));
+    this._authApiService.login(this.registerForm.value).subscribe({
+      next: (res) => {
+        console.log('registered successfully. response:', res);
+      },
+      error: (err) => {
+        console.log('failed to register. error:', err);
+      },
+    });
+  }
+
+  /**
+   * Validation helpers (to avoid repitition of touched)
+   */
+  isFieldValid(fieldName: string): boolean {
+    const field = this.registerForm.get(fieldName);
+    return field ? field.invalid && field.touched : false;
+  }
+
+  getFieldErrors(fieldName: string) {
+    return this.registerForm.get(fieldName)?.errors ?? null;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
 @Component({
@@ -7,19 +7,35 @@ import { ValidationErrors } from '@angular/forms';
   templateUrl: `./error-message.component.html`,
 })
 export class ErrorMessageComponent {
-  message = input.required<string | ValidationErrors | null>();
+  // prop of errors passed to display message
+  @Input() errors: ValidationErrors | null = null;
 
-  getErrorMessages(): string[] {
-    const errors = this.message();
-    if (!errors || typeof errors === 'string') return [];
+  get errorMessage(): string {
+    if (!this.errors) return '';
 
-    const messages: string[] = [];
-    if (errors['hasUpperCase']) messages.push('Password must contain at least one uppercase letter');
-    if (errors['hasLowerCase']) messages.push('Password must contain at least one lowercase letter');
-    if (errors['hasNumber']) messages.push('Password must contain at least one number');
-    if (errors['hasRightLength']) messages.push('Password must be between 6 and 25 characters');
-    if (errors['mismatch']) messages.push('Passwords must match');
-    
-    return messages;
+    if (this.errors['required']) {
+      return 'This field is required.';
+    }
+    if (this.errors['email']) {
+      return 'Please enter a valid email.';
+    }
+
+    if (this.errors['hasUpperCase']) {
+      return 'This field must contain at least one uppercase letter.';
+    }
+    if (this.errors['hasLowerCase']) {
+      return 'This field must contain at least one lowercase letter.';
+    }
+    if (this.errors['hasNumber']) {
+      return 'This field must contain at least one number.';
+    }
+    if (this.errors['hasRightLength']) {
+      return 'This field must be 6 to 25 characters long.';
+    }
+    if (this.errors['mismatch']) {
+      return 'Passwords must match.';
+    }
+
+    return 'Invalid Input.';
   }
 }
