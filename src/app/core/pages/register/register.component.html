@@ -51,7 +51,7 @@
         placeholder="Password"
         [toggleMask]="true"
       />
-      @if (registerForm.get('password')?.touched ) {
+      @if (isFieldValid('password') ) {
       <div>
         <app-error-message
           [errors]="getFieldErrors('password')"
