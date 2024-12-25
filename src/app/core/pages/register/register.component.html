@@ -65,6 +65,13 @@
         placeholder="Confirm Password"
         [toggleMask]="true"
       />
+      @if (isFieldValid('confirmPassword') ) {
+        <div>
+          <app-error-message
+            [errors]="getFieldErrors('confirmPassword')"
+          ></app-error-message>
+        </div>
+        }
     </div>
     <div class="form-item col-12 grid">
       <p class="ml-auto login-prompt">
