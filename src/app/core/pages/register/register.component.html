@@ -53,8 +53,9 @@
       />
       @if (registerForm.get('password')?.touched ) {
       <div>
-        {{ registerForm.get("password")?.errors }}
-        <app-error-message [errors]="getFieldErrors('password')"></app-error-message>
+        <app-error-message
+          [errors]="getFieldErrors('password')"
+        ></app-error-message>
       </div>
       }
     </div>

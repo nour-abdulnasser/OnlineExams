@@ -30,13 +30,16 @@ import { ErrorMessageComponent } from '../../../shared/components/ui/error-messa
 })
 export class RegisterComponent {
   registerForm: FormGroup = this._FormBuilder.group({
-    email: ['', Validators.required, Validators.email],
-    password: ['', Validators.required, PasswordValidator.passwordStrength],
-    confirmPassword: ['', Validators.required, PasswordValidator.matchPassword],
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    username: ['', Validators.required],
-    phoneNumber: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, PasswordValidator.passwordStrength]],
+    confirmPassword: [
+      '',
+      [Validators.required, PasswordValidator.matchPassword],
+    ],
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
+    username: ['', [Validators.required]],
+    phoneNumber: ['', [Validators.required]],
   });
 
   constructor(
