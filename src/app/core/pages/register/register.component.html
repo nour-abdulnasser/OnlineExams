@@ -51,17 +51,24 @@
         placeholder="Password"
         [toggleMask]="true"
       />
+      @if (registerForm.get('password')?.touched ) {
+      <div>
+        {{ registerForm.get("password")?.errors }}
+        <app-error-message [message]="registerForm.get('password')?.errors"></app-error-message>
+      </div>
+      }
     </div>
     <div class="form-item col-12">
       <p-password
-        formControlName="rePassword"
+        formControlName="confirmPassword"
         placeholder="Confirm Password"
         [toggleMask]="true"
       />
     </div>
     <div class="form-item col-12 grid">
       <p class="ml-auto login-prompt">
-        Already have an account? <a routerLink="/auth/login" class="login-link">Log in</a>
+        Already have an account?
+        <a routerLink="/auth/login" class="login-link">Log in</a>
       </p>
     </div>
     <div class="form-item col-12">
