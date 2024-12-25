@@ -14,6 +14,8 @@ import { RouterLink } from '@angular/router';
 
 import PasswordValidator from '../../../shared/components/business/validators/password.validator';
 import { ErrorMessageComponent } from '../../../shared/components/ui/error-message/error-message.component';
+import FullNameValidator from '../../../shared/components/business/validators/user-full-name.validator';
+import PhoneValidator from '../../../shared/components/business/validators/phone.validator';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -36,18 +38,19 @@ export class RegisterComponent {
       '',
       [Validators.required, PasswordValidator.matchPassword],
     ],
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
+    firstName: [
+      '',
+      [Validators.required, FullNameValidator.firstNameValidation],
+    ],
+    lastName: ['', [Validators.required, FullNameValidator.lastNameValidation]],
     username: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required]],
+    phoneNumber: ['', [Validators.required, PhoneValidator.phoneValidation]],
   });
 
   constructor(
     private _authApiService: AuthApiService,
     private _FormBuilder: FormBuilder
-  ) {
-    console.log(this.registerForm.get('password')?.errors);
-  }
+  ) {}
   register() {
     this._authApiService.login(this.registerForm.value).subscribe({
       next: (res) => {
@@ -68,6 +71,7 @@ export class RegisterComponent {
   }
 
   getFieldErrors(fieldName: string) {
+    console.log(this.registerForm);
     return this.registerForm.get(fieldName)?.errors ?? null;
   }
 }

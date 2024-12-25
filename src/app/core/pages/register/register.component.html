@@ -1,5 +1,6 @@
 <div class="form-template grid justify-content-center">
   <form [formGroup]="registerForm" (ngSubmit)="register()">
+    
     <div class="form-item col-12">
       <input
         type="text"
@@ -8,6 +9,12 @@
         formControlName="firstName"
         placeholder="First Name"
       />
+      @if(isFieldValid('firstName')){
+      <div>
+        <app-error-message [errors]="getFieldErrors('firstName')">
+        </app-error-message>
+      </div>
+      }
     </div>
     <div class="form-item col-12">
       <input
@@ -17,6 +24,12 @@
         formControlName="lastName"
         placeholder="Last Name"
       />
+      @if(isFieldValid('lastName')){
+        <div>
+          <app-error-message [errors]="getFieldErrors('lastName')">
+          </app-error-message>
+        </div>
+        }
     </div>
     <div class="form-item col-12">
       <input
@@ -26,6 +39,13 @@
         formControlName="email"
         placeholder="Email"
       />
+      @if (isFieldValid('email') ) {
+        <div>
+          <app-error-message
+            [errors]="getFieldErrors('email')"
+          ></app-error-message>
+        </div>
+        }
     </div>
     <div class="form-item col-12">
       <input
@@ -44,6 +64,13 @@
         formControlName="phoneNumber"
         placeholder="Phone Number"
       />
+      @if (isFieldValid('phoneNumber') ) {
+        <div>
+          <app-error-message
+            [errors]="getFieldErrors('phoneNumber')"
+          ></app-error-message>
+        </div>
+        }
     </div>
     <div class="form-item col-12">
       <p-password
@@ -66,12 +93,12 @@
         [toggleMask]="true"
       />
       @if (isFieldValid('confirmPassword') ) {
-        <div>
-          <app-error-message
-            [errors]="getFieldErrors('confirmPassword')"
-          ></app-error-message>
-        </div>
-        }
+      <div>
+        <app-error-message
+          [errors]="getFieldErrors('confirmPassword')"
+        ></app-error-message>
+      </div>
+      }
     </div>
     <div class="form-item col-12 grid">
       <p class="ml-auto login-prompt">

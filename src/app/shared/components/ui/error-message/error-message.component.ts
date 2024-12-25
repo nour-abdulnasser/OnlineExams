@@ -35,6 +35,12 @@ export class ErrorMessageComponent {
     if (this.errors['mismatch']) {
       return 'Passwords must match.';
     }
+    if (this.errors['isNameValid']) {
+      return 'Name must only contain letters.';
+    }
+    if (this.errors['isPhoneValid']) {
+      return 'Please enter a valid phone number.';
+    }
 
     return 'Invalid Input.';
   }

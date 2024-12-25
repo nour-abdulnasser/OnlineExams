@@ -1,13 +1,15 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 function passwordStrength(control: AbstractControl): ValidationErrors | null {
+  // grab value to test on
   const password = control.value;
+
+  // define custom logic needed
   const minLength = 6;
   const maxLength = 25;
-
   const lengthRegex = new RegExp(`.{${minLength},${maxLength}}`);
 
-  // define custom logics needed
+  // test
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumber = /\d/.test(password);
@@ -17,7 +19,7 @@ function passwordStrength(control: AbstractControl): ValidationErrors | null {
   const isPasswordValid =
     hasUpperCase && hasNumber && hasLowerCase && hasRightLength;
 
-  // validation error message
+  // prep validation error message
   const validationErrors = {
     hasUpperCase: !hasUpperCase,
     hasLowerCase: !hasLowerCase,
