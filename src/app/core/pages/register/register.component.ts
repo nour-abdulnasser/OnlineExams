@@ -35,10 +35,7 @@ export class RegisterComponent {
   registerForm: FormGroup = this._FormBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, PasswordValidator.passwordStrength]],
-    rePassword: [
-      '',
-      [Validators.required, PasswordValidator.matchPassword],
-    ],
+    rePassword: ['', [Validators.required, PasswordValidator.matchPassword]],
     firstName: [
       '',
       [Validators.required, FullNameValidator.firstNameValidation],
@@ -58,6 +55,7 @@ export class RegisterComponent {
     private _router: Router
   ) {}
   register() {
+    this.isLoading = true;
     this._authApiService.register(this.registerForm.value).subscribe({
       next: (res) => {
         // TODO: toaster for successful registration

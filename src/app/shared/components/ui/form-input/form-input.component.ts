@@ -12,7 +12,7 @@ import { ErrorMessageComponent } from '../error-message/error-message.component'
     CommonModule,
     InputTextModule,
     PasswordModule,
-    ErrorMessageComponent,
+    // ErrorMessageComponent,
   ],
   providers: [
     {
