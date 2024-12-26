@@ -1,6 +1,10 @@
 <div class="form-template grid justify-content-center">
+  @if(apiErrorMessage) {
+    <div class="col-12">
+      <p class="p-error">{{ apiErrorMessage }}</p>
+    </div>
+    }
   <form [formGroup]="registerForm" (ngSubmit)="register()">
-    
     <div class="form-item col-12">
       <input
         type="text"
@@ -25,11 +29,11 @@
         placeholder="Last Name"
       />
       @if(isFieldValid('lastName')){
-        <div>
-          <app-error-message [errors]="getFieldErrors('lastName')">
-          </app-error-message>
-        </div>
-        }
+      <div>
+        <app-error-message [errors]="getFieldErrors('lastName')">
+        </app-error-message>
+      </div>
+      }
     </div>
     <div class="form-item col-12">
       <input
@@ -40,12 +44,12 @@
         placeholder="Email"
       />
       @if (isFieldValid('email') ) {
-        <div>
-          <app-error-message
-            [errors]="getFieldErrors('email')"
-          ></app-error-message>
-        </div>
-        }
+      <div>
+        <app-error-message
+          [errors]="getFieldErrors('email')"
+        ></app-error-message>
+      </div>
+      }
     </div>
     <div class="form-item col-12">
       <input
@@ -61,16 +65,16 @@
         type="text"
         class="w-full"
         pInputText
-        formControlName="phoneNumber"
+        formControlName="phone"
         placeholder="Phone Number"
       />
-      @if (isFieldValid('phoneNumber') ) {
-        <div>
-          <app-error-message
-            [errors]="getFieldErrors('phoneNumber')"
-          ></app-error-message>
-        </div>
-        }
+      @if (isFieldValid('phone') ) {
+      <div>
+        <app-error-message
+          [errors]="getFieldErrors('phone')"
+        ></app-error-message>
+      </div>
+      }
     </div>
     <div class="form-item col-12">
       <p-password
@@ -88,14 +92,14 @@
     </div>
     <div class="form-item col-12">
       <p-password
-        formControlName="confirmPassword"
+        formControlName="rePassword"
         placeholder="Confirm Password"
         [toggleMask]="true"
       />
-      @if (isFieldValid('confirmPassword') ) {
+      @if (isFieldValid('rePassword') ) {
       <div>
         <app-error-message
-          [errors]="getFieldErrors('confirmPassword')"
+          [errors]="getFieldErrors('rePassword')"
         ></app-error-message>
       </div>
       }
@@ -108,10 +112,12 @@
     </div>
     <div class="form-item col-12">
       <p-button
-        [disabled]="registerForm.invalid"
+        [disabled]="registerForm.invalid || isLoading"
         type="submit"
         class="auth-button"
         label="Create Account"
+        type="submit"
+        [loading]="isLoading"
       />
     </div>
   </form>

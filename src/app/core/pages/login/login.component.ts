@@ -53,15 +53,16 @@ export class LoginComponent {
     this.errorMessage = '';
 
     this._authApiService.login(this.loginForm.value).subscribe({
-      next: (response ) => {
+      next: (response) => {
         if (response) {
           localStorage.setItem('onlineExamsUser', response.token);
           this._router.navigateByUrl('/home');
         }
       },
       error: (error) => {
-        this.errorMessage = 'An error occurred. Please try again.';
-        console.log('Login error:', error);
+        this.errorMessage = error.error.message;
+        console.log('Login error:', error.error.message);
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false;

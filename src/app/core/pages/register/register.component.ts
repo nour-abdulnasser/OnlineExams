@@ -16,6 +16,7 @@ import PasswordValidator from '../../../shared/components/business/validators/pa
 import { ErrorMessageComponent } from '../../../shared/components/ui/error-message/error-message.component';
 import FullNameValidator from '../../../shared/components/business/validators/user-full-name.validator';
 import PhoneValidator from '../../../shared/components/business/validators/phone.validator';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -34,7 +35,7 @@ export class RegisterComponent {
   registerForm: FormGroup = this._FormBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, PasswordValidator.passwordStrength]],
-    confirmPassword: [
+    rePassword: [
       '',
       [Validators.required, PasswordValidator.matchPassword],
     ],
@@ -44,20 +45,32 @@ export class RegisterComponent {
     ],
     lastName: ['', [Validators.required, FullNameValidator.lastNameValidation]],
     username: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required, PhoneValidator.phoneValidation]],
+    phone: ['', [Validators.required, PhoneValidator.phoneValidation]],
   });
+
+  isLoading = false;
+  // TODO: grab api error using library
+  apiErrorMessage = '';
 
   constructor(
     private _authApiService: AuthApiService,
-    private _FormBuilder: FormBuilder
+    private _FormBuilder: FormBuilder,
+    private _router: Router
   ) {}
   register() {
-    this._authApiService.login(this.registerForm.value).subscribe({
+    this._authApiService.register(this.registerForm.value).subscribe({
       next: (res) => {
-        console.log('registered successfully. response:', res);
+        // TODO: toaster for successful registration
+        if (res.message === 'success') {
+          this._router.navigateByUrl('/auth/login');
+        }
       },
       error: (err) => {
-        console.log('failed to register. error:', err);
+        this.apiErrorMessage = err.error.message;
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
