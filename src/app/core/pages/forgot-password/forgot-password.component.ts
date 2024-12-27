@@ -4,6 +4,7 @@ import { AuthApiService } from 'auth-api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ErrorMessageComponent } from '../../../shared/components/ui/error-message/error-message.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -22,6 +23,7 @@ export class ForgotPasswordComponent {
   constructor(
     private _AuthApiService: AuthApiService,
     private _FormBuilder: FormBuilder
+    , private _Router: Router
   ) {}
 
   apiDisplayMessage = '';
@@ -35,6 +37,8 @@ export class ForgotPasswordComponent {
       .subscribe({
         next: (res) => {
           this.apiDisplayMessage = res.info;
+          this._Router.navigateByUrl('/auth/verify')
+          
         },
         error: (err) => {
           this.apiDisplayMessage = err;
