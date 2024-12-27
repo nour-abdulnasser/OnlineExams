@@ -11,8 +11,9 @@ import { AuthApiService } from 'auth-api';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { FormInputComponent } from '../../../shared/components/ui/form-input/form-input.component';
-import { LoginResponse } from '../../../../../dist/auth-api/lib/interfaces/login-response';
 import PasswordValidator from '../../../shared/components/business/validators/password.validator';
+import { PageTitleComponent } from '../../../shared/components/ui/page-title/page-title.component';
+import { DividerComponent } from '../../../shared/components/ui/divider/divider.component';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ import PasswordValidator from '../../../shared/components/business/validators/pa
     ReactiveFormsModule,
     ButtonModule,
     FormInputComponent,
+    PageTitleComponent, DividerComponent
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -35,7 +37,7 @@ export class LoginComponent {
         Validators.required,
         PasswordValidator.passwordStrength,
         // In login we should only need valid response
-        // Validators.minLength(6),
+        // Validators.minLength(6), // design not be
         // Validators.pattern(/^(?=.*[A-Z])(?=.*\d)/), // At least one uppercase and one number
       ],
     ],

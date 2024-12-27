@@ -1,0 +1,26 @@
+.divider-component {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  color: #6c737f;
+  line-height: 1.1rem;
+  &::before {
+    content: " ";
+    position: absolute;
+    background-color: #e7e7e7;
+    height: 1px;
+    width: 20%;
+    vertical-align: middle;
+    top: 50%;
+    left: 0;
+  }
+  &::after {
+    content: " ";
+    position: absolute;
+    background-color: #e7e7e7;
+    height: 1px;
+    width: 20%;
+    top: 50%;
+    right: 0;
+  }
+}

@@ -17,6 +17,8 @@ import { ErrorMessageComponent } from '../../../shared/components/ui/error-messa
 import FullNameValidator from '../../../shared/components/business/validators/user-full-name.validator';
 import PhoneValidator from '../../../shared/components/business/validators/phone.validator';
 import { Router } from '@angular/router';
+import { PageTitleComponent } from '../../../shared/components/ui/page-title/page-title.component';
+import { DividerComponent } from '../../../shared/components/ui/divider/divider.component';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -27,6 +29,7 @@ import { Router } from '@angular/router';
     PasswordModule,
     ButtonModule,
     ErrorMessageComponent,
+    PageTitleComponent, DividerComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
