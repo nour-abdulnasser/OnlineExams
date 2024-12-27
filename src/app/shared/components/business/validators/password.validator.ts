@@ -5,7 +5,7 @@ function passwordStrength(control: AbstractControl): ValidationErrors | null {
   const password = control.value;
 
   // define custom logic needed
-  const minLength = 6;
+  const minLength = 8;
   const maxLength = 25;
   const lengthRegex = new RegExp(`.{${minLength},${maxLength}}`);
 
@@ -14,10 +14,10 @@ function passwordStrength(control: AbstractControl): ValidationErrors | null {
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumber = /\d/.test(password);
   const hasRightLength = lengthRegex.test(password);
+  const hasSpecialChar = /(?=.*?[#?!@$%^&*-])/.test(password)
 
-  // checking password is valid
   const isPasswordValid =
-    hasUpperCase && hasNumber && hasLowerCase && hasRightLength;
+    hasUpperCase && hasNumber && hasLowerCase && hasRightLength && hasSpecialChar;
 
   // prep validation error message
   const validationErrors = {
@@ -25,6 +25,7 @@ function passwordStrength(control: AbstractControl): ValidationErrors | null {
     hasLowerCase: !hasLowerCase,
     hasNumber: !hasNumber,
     hasRightLength: !hasRightLength,
+    hasSpecialChar: !hasSpecialChar
   };
 
   return isPasswordValid ? null : validationErrors;
