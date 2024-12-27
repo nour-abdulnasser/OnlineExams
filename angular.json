@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FolderStructure": {
+    "OnlineExams": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/folder-structure",
+            "outputPath": "dist/online-exams",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "FolderStructure:build:production"
+              "buildTarget": "OnlineExams:build:production"
             },
             "development": {
-              "buildTarget": "FolderStructure:build:development"
+              "buildTarget": "OnlineExams:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "FolderStructure:build"
+            "buildTarget": "OnlineExams:build"
           }
         },
         "test": {

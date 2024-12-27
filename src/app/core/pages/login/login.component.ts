@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { FormInputComponent } from '../../../shared/components/ui/form-input/form-input.component';
 import PasswordValidator from '../../../shared/components/business/validators/password.validator';
 import { PageTitleComponent } from '../../../shared/components/ui/page-title/page-title.component';
-import { DividerComponent } from '../../../shared/components/ui/divider/divider.component';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +22,7 @@ import { DividerComponent } from '../../../shared/components/ui/divider/divider.
     ReactiveFormsModule,
     ButtonModule,
     FormInputComponent,
-    PageTitleComponent, DividerComponent
+    PageTitleComponent
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],

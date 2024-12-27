@@ -1,10 +1,10 @@
 <div class="form-template flex-column justify-content-center">
   <app-page-title pageTitle="Sign up"></app-page-title>
   @if(apiErrorMessage) {
-    <div class="col-12">
-      <p class="p-error">{{ apiErrorMessage }}</p>
-    </div>
-    }
+  <div class="col-12">
+    <p class="p-error">{{ apiErrorMessage }}</p>
+  </div>
+  }
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <div class="form-item col-12">
       <input
@@ -122,7 +122,5 @@
       />
     </div>
   </form>
-  <div class="socials-option">
-    <app-divider dividerText="Or Continue with"></app-divider>
-  </div>
 </div>
+
