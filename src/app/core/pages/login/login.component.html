@@ -1,7 +1,7 @@
 <div class="form-template grid justify-content-center">
-  @if(errorMessage) {
+  @if(apiErrorMessage) {
   <div class="col-12">
-    <p class="p-error">{{ errorMessage }}</p>
+    <p class="p-error">{{ apiErrorMessage }}</p>
   </div>
   }
   <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -9,14 +9,14 @@
       formControlName="email"
       placeholder="Enter Email"
       type="email"
-      [errors]="loginForm.get('email')?.errors"
+      [errors]="loginForm.get('email')?.errors ?? null"
     />
 
     <app-form-input
       formControlName="password"
       placeholder="Password"
       type="password"
-      [errors]="loginForm.get('password')?.errors"
+      [errors]="loginForm.get('password')?.errors ?? null"
     />
 
     <div class="form-item col-12 grid">

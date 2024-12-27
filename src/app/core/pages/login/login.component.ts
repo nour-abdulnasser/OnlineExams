@@ -1,8 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { FormInputComponent } from '../../../shared/components/ui/form-input/form-input.component';
 import { LoginResponse } from '../../../../../dist/auth-api/lib/interfaces/login-response';
+import PasswordValidator from '../../../shared/components/business/validators/password.validator';
 
 @Component({
   selector: 'app-login',
@@ -30,15 +32,17 @@ export class LoginComponent {
     password: [
       '',
       [
-        Validators.required, // In login we only need valid response
+        Validators.required,
+        PasswordValidator.passwordStrength,
+        // In login we should only need valid response
         // Validators.minLength(6),
         // Validators.pattern(/^(?=.*[A-Z])(?=.*\d)/), // At least one uppercase and one number
       ],
     ],
   });
-
+  @Output() errors: ValidationErrors | null = null;
   isLoading = false;
-  errorMessage = '';
+  apiErrorMessage = '';
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -50,7 +54,7 @@ export class LoginComponent {
     if (this.loginForm.invalid) return;
 
     this.isLoading = true;
-    this.errorMessage = '';
+    this.apiErrorMessage = '';
 
     this._authApiService.login(this.loginForm.value).subscribe({
       next: (response) => {
@@ -60,7 +64,7 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        this.errorMessage = error.error.message;
+        this.apiErrorMessage = error.error.message;
         console.log('Login error:', error.error.message);
         this.isLoading = false;
       },

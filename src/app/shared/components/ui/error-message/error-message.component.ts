@@ -30,7 +30,7 @@ export class ErrorMessageComponent {
       return 'This field must contain at least one number.';
     }
     if (this.errors['hasRightLength']) {
-      return 'This field must be 6 to 25 characters long.';
+      return 'This field must be 8 to 25 characters long.';
     }
     if (this.errors['mismatch']) {
       return 'Passwords must match.';
@@ -40,6 +40,9 @@ export class ErrorMessageComponent {
     }
     if (this.errors['isPhoneValid']) {
       return 'Please enter a valid phone number.';
+    }
+    if (this.errors['hasSpecialChar']) {
+      return 'This field must contain at least one special character.';
     }
 
     return 'Invalid Input.';
